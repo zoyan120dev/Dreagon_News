@@ -18,11 +18,11 @@ function Login() {
 
     signInWithEmailAndPasswords(email , password)
     .then(result => {
-      console.log(result)
+      // console.log(result)
       navigate(`${location.state ? location.state : '/'}`)
     })
     .catch(errorCode => {
-      console.log(error)
+      // console.log(error)
       SetError(errorCode)
     })
     

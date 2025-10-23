@@ -30,12 +30,12 @@ function Register() {
             setUser({ ...result, displayName: name, photoURL: photo });
             navigate('/')
            }).catch(error => {
-            console.log(error);
+            // console.log(error);
             setUser(result);
            })
         })
         .catch(error => {
-           console.log(error);
+          //  console.log(error);
         })
     }
 

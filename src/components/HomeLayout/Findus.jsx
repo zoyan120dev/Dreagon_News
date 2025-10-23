@@ -12,18 +12,27 @@ function Findus() {
       <h2 className="font-bold mb-5">Find Us On</h2>
       <div>
         <div className="join join-vertical w-full">
-          <button className="btn bg-base-100  justify-start join-item">
+          <a
+            href="https://www.facebook.com/"
+            className="btn bg-base-100  justify-start join-item"
+          >
             <FaFacebook />
             Facebook
-          </button>
-          <button className="btn bg-base-100  justify-start join-item">
+          </a>
+          <a
+            href="https://x.com"
+            className="btn bg-base-100  justify-start join-item"
+          >
             <FaXTwitter />
             Twiter
-          </button>
-          <button className="btn bg-base-100  justify-start join-item">
-            <FaInstagram/>
+          </a>
+          <a
+            href="https://www.instagram.com/"
+            className="btn bg-base-100  justify-start join-item"
+          >
+            <FaInstagram />
             Instagram
-          </button>
+          </a>
         </div>
       </div>
     </div>

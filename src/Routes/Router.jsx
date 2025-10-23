@@ -7,6 +7,9 @@ import Register from "../components/Auth/Register";
 import AuthLayout from "../components/Auth/AuthLayout";
 import NewsDetails from "../components/NewsDetails";
 import PrivateRoute from "../components/provider/PrivateRoute";
+import About from "../components/About/About";
+import Career from "../components/About/Career";
+import ErrorPage from "../components/About/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,16 +43,28 @@ const router = createBrowserRouter([
 
   {
     path: "news-details/:id",
-    element: <PrivateRoute><NewsDetails/></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <NewsDetails />
+      </PrivateRoute>
+    ),
     loader: () => fetch("../news.json"),
   },
   {
     path: "*",
-    element: <h1>Error 404</h1>,
+    element: <ErrorPage/>,
   },
   {
-    HydrateFallback:<div>Loading....</div>
-  }
+    path: "/about",
+    element: <About />,
+  },
+  {
+     path:'/career',
+     element: <Career/>
+  },
+  {
+    HydrateFallback: <div>Loading....</div>,
+  },
 ]);
 
 export default router;
