@@ -2,7 +2,18 @@ import React, { use } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 function SocialLogin() {
-   const { user} = use(AuthContext); 
+   const { user, signInWithGoogle } = use(AuthContext); 
+    
+   const handleGoogleSignIn = () => {
+      signInWithGoogle()
+      .then(result => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+   }
+
   return (
     <>
       {user ? (
@@ -12,7 +23,10 @@ function SocialLogin() {
           <h1 className="font-bold mb-5">Login With</h1>
           <div className="grid grid-cols-1 space-y-2">
             {/* Google */}
-            <button className="btn bg-white text-black border-[#e5e5e5]">
+            <button
+              onClick={signInWithGoogle}
+              className="btn bg-white text-black border-[#e5e5e5]"
+            >
               <svg
                 aria-label="Google logo"
                 width="16"
