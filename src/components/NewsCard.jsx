@@ -1,6 +1,7 @@
 import React from "react";
 import { FaEye, FaStar, FaRegBookmark } from "react-icons/fa";
 import { FiShare2 } from "react-icons/fi";
+import { Link } from "react-router";
 
 const NewCard = ({ news }) => {
   const {
@@ -11,6 +12,7 @@ const NewCard = ({ news }) => {
     rating,
     total_view,
     published_date,
+    id,
   } = news;
 
   const formattedDate = new Date(news.author.published_date).toLocaleDateString(
@@ -34,7 +36,7 @@ const NewCard = ({ news }) => {
         </div>
         <div className="flex items-center gap-5">
           <FiShare2 className="text-xl cursor-pointer text-gray-500 hover:text-primary" />
-          <FaRegBookmark/>
+          <FaRegBookmark />
         </div>
       </div>
       <img
@@ -49,9 +51,12 @@ const NewCard = ({ news }) => {
           {details.length > 150 ? (
             <>
               {details.slice(0, 150)}...{" "}
-              <span className="text-primary font-medium cursor-pointer">
+              <Link
+                to={`/news-details/${id}`}
+                className="text-primary font-medium cursor-pointer"
+              >
                 Read More
-              </span>
+              </Link>
             </>
           ) : (
             details

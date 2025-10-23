@@ -1,16 +1,44 @@
-import React from 'react'
-import { Link } from 'react-router';
+import React, { use, useState } from 'react'
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../provider/AuthProvider';
 
 function Register() {
+    const { createUser, setUser, upDateUser } = use(AuthContext);
+    const [nameError , setNameEror] = useState('')
+    const navigate = useNavigate()
 
     const handleRegister = (event) => {
         event.preventDefault()
         const form = event.target;
         const name = form.name.value;
+        if(name.length < 5){
+           setNameEror('name should be morw then 5 chracter')
+        }else{
+           setNameEror('')
+        }
         const email = form.email.value;
         const password  = form.password.value;
         const photo = form.photo.value;
+
+        
+        createUser(email , password)
+        .then(result => {
+           upDateUser({
+              displayName: name,
+              photoURL: photo
+           }).then(() => {
+            setUser({ ...result, displayName: name, photoURL: photo });
+            navigate('/')
+           }).catch(error => {
+            console.log(error);
+            setUser(result);
+           })
+        })
+        .catch(error => {
+           console.log(error);
+        })
     }
+
   return (
     <>
       <div className="flex justify-center min-h-screen items-center">
@@ -24,6 +52,9 @@ function Register() {
                 {/* name */}
                 <label className="label">Name</label>
                 <input name='name' type="text" className="input" placeholder="Name" required />
+                {
+                  nameError && <p className='text-red-500 text-sm'>{nameError.message}</p>
+                }
 
                 {/* Photo url */}
                 <label className="label">Photo Url</label>

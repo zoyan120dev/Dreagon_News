@@ -3,6 +3,7 @@ import Navbar from '../Navbar'
 import { Outlet } from 'react-router';
 
 function AuthLayout() {
+    
   return (
     <>
       <div className="bg-base-200 min-h-screen">
